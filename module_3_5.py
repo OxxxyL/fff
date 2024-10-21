@@ -12,9 +12,19 @@ def get_multiplied_digits(number): #Функция которая принима
         # Если длина строки 1, возвращаем оставшуюся цифру как целое число, это конец...
         return int(str_number)
 
+# Обработка нулей
+def get_multiplied_digits_without_zeros(number): #Преобразуем число в строку для перебора
+    str_number = str(number)
+    product = 1
+    for digit in str_number:
+        if digit != '0':  # Игнорируем нули, если цифра не равна 0 то умножаем на product
+            product *= int(digit)
+    return product
+
 result = get_multiplied_digits(40203)
 print(result)
 
 #Стек вызовов будет выглядеть следующим образом:
 #При преобразовании строки(str) в число(int) первые нули убираются. int('00123') -> 123.
 #get_multiplied_digits(40203) -> 4 * get_multiplied_digits(203) -> 4 * 2 * get_multiplied_digits(3) -> 4 * 2 * 3
+#Вызываем get_multiplied_digits_without_zeros(402030), что возвращает 24, так как 4 * 2 * 3 = 24.
